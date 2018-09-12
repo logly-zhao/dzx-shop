@@ -67,6 +67,7 @@
             </tr>
             </thead>
             <tbody>
+              {{--
               @foreach($reviews as $review)
               <tr>
                 <td>{{ $review->order->user->name }}</td>
@@ -75,7 +76,7 @@
                 <td>{{ $review->review }}</td>
                 <td>{{ $review->reviewed_at->format('Y-m-d H:i') }}</td>
               </tr>
-              @endforeach
+              @endforeach--}}
             </tbody>
           </table>
           <!-- 评论列表结束 -->
@@ -124,7 +125,7 @@
             });
         });
     });
-
+{{--
     // 加入购物车按钮点击事件
     $('.btn-add-to-cart').click(function () {
       // 请求加入购物车接口
@@ -157,7 +158,7 @@
           }
         })
     });
-
+--}}
   });
 </script>
 @endsection
