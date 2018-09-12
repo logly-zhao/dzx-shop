@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/', 'PagesController@root')->name('root');
+Route::redirect('/', '/products')->name('root');
+Route::get('products', 'ProductsController@index')->name('products.index');
 
 Auth::routes();
 
@@ -27,15 +28,14 @@ Route::group(['middleware' => 'auth'], function() {
       Route::get('user_addresses/{user_address}', 'UserAddressesController@edit')->name('user_addresses.edit');
       Route::put('user_addresses/{user_address}', 'UserAddressesController@update')->name('user_addresses.update');
       Route::delete('user_addresses/{user_address}', 'UserAddressesController@destroy')->name('user_addresses.destroy');
-      
+
     });
     // 结束
 });
-
+Route::get('products/{product}', 'ProductsController@show')->name('products.show');
 
 /*
-Route::redirect('/', '/products')->name('root');
-Route::get('products', 'ProductsController@index')->name('products.index');
+
 Route::group(['middleware' => 'auth'], function() {
     Route::group(['middleware' => 'email_verified'], function() {
         Route::post('products/{product}/favorite', 'ProductsController@favor')->name('products.favor');
@@ -58,7 +58,7 @@ Route::group(['middleware' => 'auth'], function() {
     });
 });
 
-Route::get('products/{product}', 'ProductsController@show')->name('products.show');
+
 Route::post('payment/alipay/notify', 'PaymentController@alipayNotify')->name('payment.alipay.notify');
 Route::post('payment/wechat/notify', 'PaymentController@wechatNotify')->name('payment.wechat.notify');
 Route::post('payment/wechat/refund_notify', 'PaymentController@wechatRefundNotify')->name('payment.wechat.refund_notify');
